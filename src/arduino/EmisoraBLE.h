@@ -18,9 +18,6 @@
 
 // ----------------------------------------------------------
 // Clase: EmisoraBLE
-//
-// Encapsula la gestión de la emisora BLE: configuración, 
-// anuncios, servicios, características y manejo de conexiones.
 // ----------------------------------------------------------
 class EmisoraBLE {
 private:
@@ -31,7 +28,9 @@ private:
 
 public:
 
-  // Tipos de callback para conexión.
+  // --------------------------------------------------------
+  // Tipos públicos
+  // --------------------------------------------------------
   using CallbackConexionEstablecida = void ( uint16_t connHandle );
   using CallbackConexionTerminada = void ( uint16_t connHandle, uint8_t reason);
 
