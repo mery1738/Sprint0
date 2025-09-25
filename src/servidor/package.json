@@ -1,0 +1,17 @@
+{
+  "//": "npm run test",
+  "name": "servidor",
+  "description": "Servidor Sprint0",
+  "license": "LGPL-3.0",
+  "version": "0.0.1",
+  "repository": "no hay",
+  "scripts": {
+    "test": "npx mocha"
+  },
+  "dependencies": {
+    "sqlite3": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
