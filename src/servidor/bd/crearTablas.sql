@@ -2,8 +2,9 @@
 DROP TABLE IF EXISTS Mediciones;
 
 CREATE TABLE Mediciones (
-    tipo TEXT,         -- tipo de medición: "CO2", "TEMPERATURA", "RUIDO"
-    valor INTEGER,     -- valor de la medición
-    instante TEXT      -- timestamp ISO-8601 en string (ej: "2025-02-21T15:30:00")
+    id INTEGER PRIMARY KEY AUTOINCREMENT, -- identificador único
+    tipo TEXT,                            -- "CO2", "TEMPERATURA", "RUIDO"
+    valor REAL,                           -- puede ser int o decimal
+    instante TEXT                         -- timestamp ISO-8601
 );
 

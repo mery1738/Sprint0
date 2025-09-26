@@ -1,4 +1,4 @@
-const Logica = require("../Logica.js");
+const Logica = require("../logica/Logica.js");
 const assert = require("assert");
 
 describe("Pruebas de Logica: Mediciones", function () {
@@ -20,7 +20,7 @@ describe("Pruebas de Logica: Mediciones", function () {
     // Borrar todas las filas antes de empezar
     // ------------------------------------------------------
     it("borrar todas las filas de Mediciones", async function () {
-        await laLogica.laConexion.run("DELETE FROM Mediciones");
+        await laLogica.borrarFilasDe("Mediciones");
     });
 
     // ------------------------------------------------------
