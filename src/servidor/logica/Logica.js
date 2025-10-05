@@ -1,6 +1,19 @@
+// -----------------------------------------------------------------------------
+// Fichero: Logica.js
+// Autor: Meryame Ait Boumlik
+// Descripción: Gestiona la conexión y operaciones con la base de datos SQLite
+// -----------------------------------------------------------------------------
+
 const sqlite3 = require("sqlite3");
 
 module.exports = class Logica {
+    
+    // --------------------------------------------------------------
+    // constructor()
+    // Descripción: Abre la conexión con la base de datos SQLite.
+    // Diseño: String -> constructor() -> Objeto Logica
+    // Parámetros: nombreBD (string), cb (función callback)
+    // --------------------------------------------------------------
     constructor(nombreBD, cb) {
         this.laConexion = new sqlite3.Database(
             nombreBD,
@@ -14,7 +27,10 @@ module.exports = class Logica {
     }
 
     // -------------------------------------------------------------------
-    // Guardar una medición
+    // guardarMedicion()
+    // Descripción: Guarda una medición en la tabla Mediciones.
+    // Diseño: string, real, string -> guardarMedicion() -> Promise<int>
+    // Parámetros: tipo, valor, instante
     // -------------------------------------------------------------------
      guardarMedicion(tipo, valor, instante) {
         const textoSQL = `
@@ -34,7 +50,10 @@ module.exports = class Logica {
     }
 
     // -------------------------------------------------------------------
-    // Obtener la última medición registrada (ordenada por id)
+    // getMedicion()
+    // Descripción: Obtiene la última medición registrada en la base de datos.
+    // Diseño: () -> getMedicion() -> Promise<objeto>
+    // Parámetros: ninguno
     // -------------------------------------------------------------------
    getMedicion() {
         const textoSQL = `

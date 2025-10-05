@@ -1,4 +1,18 @@
+// -*-c++-*-
 
+// --------------------------------------------------------------
+//
+// Jordi Bataller i Mascarell
+// 2019-07-07
+//
+// --------------------------------------------------------------
+
+// https://learn.sparkfun.com/tutorials/nrf52840-development-with-arduino-and-circuitpython
+
+// https://stackoverflow.com/questions/29246805/can-an-ibeacon-have-a-data-payload
+
+// --------------------------------------------------------------
+// --------------------------------------------------------------
 #include <bluefruit.h>
 
 #undef min // eliminamos min/max definidos en bluefruit.h
@@ -84,10 +98,6 @@ namespace Loop {
 };
 
 // --------------------------------------------------------------
-// loop() -> 
-// Explicación: Bucle principal de Arduino. Incrementa contador,
-// muestra mensajes, hace parpadear LED, mide CO2 y temperatura,
-// publica los valores como anuncios BLE y prueba un iBeacon libre.
 // --------------------------------------------------------------
 void loop () {
 
@@ -133,10 +143,11 @@ void loop () {
 	'H'
   };
 
-  // prueba de anuncio iBeacon con datos libres
-  elPublicador.laEmisora.emitirAnuncioIBeaconLibre ( "MolaMolaMolaMolaMolaM", 21 );
+  // elPublicador.laEmisora.emitirAnuncioIBeaconLibre ( &datos[0], 21 );
+  // elPublicador.laEmisora.emitirAnuncioIBeaconLibre ( "MolaMolaMolaMolaMolaM", 21 );
 
-  esperar( 2000 );
+  esperar(3000 );
+  
   elPublicador.laEmisora.detenerAnuncio();
   
   

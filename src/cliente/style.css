@@ -1,0 +1,113 @@
+/* 
+  Fichero: style.css
+  Autor: Meryame Ait Boumlik
+  Descripción: Estilos generales para la página que muestra la última medición con un 
+  diseño responsivo y visual moderno con tarjeta central.
+*/
+
+
+/* General page styling */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container centers the card */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card styling */
+.card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 340px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Title */
+.card h2 {
+    font-size: 1.6em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Subtitle */
+.card p {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+/* Measurement display box */
+.datos {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: left;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.datos p {
+    margin: 8px 0;
+    color: #333;
+    font-size: 0.95em;
+}
+
+.datos span {
+    font-weight: 600;
+}
+
+/* Colored badges for values */
+#tipo {
+    color: #00796b;
+}
+
+#valor {
+    color: #d84315;
+}
+
+#instante {
+    color: #6a1b9a;
+    font-size: 0.9em;
+}
+
+/* Button styling */
+button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    background: #00bfa5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #009e8e;
+    transform: scale(1.05);
+}
+
+/* Placeholder text */
+.placeholder {
+    color: #aaa;
+    font-style: italic;
+}

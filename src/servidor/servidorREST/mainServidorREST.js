@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------
+// Fichero: mainServidorREST.js
+// Autor: Meryame Ait Boumlik
+// Descripción: Servidor REST principal que conecta la base de datos con las
+//              reglas REST y escucha peticiones en el puerto 8080.
+// -----------------------------------------------------------------------------
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const Logica = require("../logica/Logica.js");
@@ -17,16 +24,24 @@ function cargarLogica(ficheroBD) {
 
 // Main del servidor
 async function main() {
-    const laLogica = await cargarLogica("../bd/datos.bd");
+    const laLogica = await cargarLogica("../bd/datos.db");
 
     const servidorExpress = express();
 
+    const cors = require("cors");
+    servidorExpress.use(cors());
+
+
     // Para leer JSON
-    servidorExpress.use(bodyParser.text({ type: "application/json" }));
+    servidorExpress.use(express.json({ type: ['application/json', 'application/json; charset=utf-8'] }));
+
 
     // Cargar reglas
     const reglas = require("./ReglasREST.js");
     reglas.cargar(servidorExpress, laLogica);
+
+    servidorExpress.use(express.static(__dirname + "/../cliente"));
+
 
     // Arrancar servidor
     const servicio = servidorExpress.listen(8080, () => {

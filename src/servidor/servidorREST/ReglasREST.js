@@ -1,4 +1,12 @@
 module.exports.cargar = function (servidorExpress, laLogica) {
+// -----------------------------------------------------------------------------
+// Fichero: ReglasREST.js
+// Autor: Meryame Ait Boumlik
+// Descripción: Define las rutas REST del servidor para registrar y obtener
+//              mediciones desde la base de datos.
+// -----------------------------------------------------------------------------
+
+    
     // -----------------------------------------------------------
     // GET /prueba
     // -----------------------------------------------------------
@@ -9,32 +17,28 @@ module.exports.cargar = function (servidorExpress, laLogica) {
 
     // -----------------------------------------------------------
     // POST /medicion
-    // Cuerpo esperado: { "tipo": "CO2", "valor": 400, "instante": "2025-09-25T10:30:00" }
+    // Cuerpo esperado : { "tipo": "CO2", "valor": 333, "instante": "2025-09-25T10:30:00" }
     // -----------------------------------------------------------
     servidorExpress.post("/medicion", async (req, res) => {
-        console.log(" * POST /medicion ");
+    console.log(" * POST /medicion ");
+    console.log(" Recibido:", req.body); 
 
-        let datos = null;
+    const datos = req.body; 
 
-        try {
-            datos = JSON.parse(req.body);
-        } catch (err) {
-            res.status(400).send("Cuerpo no es JSON válido");
-            return;
-        }
+    if (!datos.tipo || !datos.valor || !datos.instante) {
+        res.status(400).send("Faltan campos: tipo, valor o instante");
+        return;
+    }
 
-        if (!datos.tipo || !datos.valor || !datos.instante) {
-            res.status(400).send("Faltan campos: tipo, valor o instante");
-            return;
-        }
+    try {
+        await laLogica.guardarMedicion(datos.tipo, datos.valor, datos.instante);
+        res.status(200).send("Medición guardada");
+    } catch (err) {
+        console.error(" Error al guardar:", err);
+        res.status(500).send("Error al guardar medición: " + err);
+    }
+});
 
-        try {
-            await laLogica.guardarMedicion(datos.tipo, datos.valor, datos.instante);
-            res.status(200).send("Medición guardada");
-        } catch (err) {
-            res.status(500).send("Error al guardar medición: " + err);
-        }
-    });
 
     // -----------------------------------------------------------
     // GET /ultimaMedicion

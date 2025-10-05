@@ -15,16 +15,19 @@ class Publicador {
   // ............................................................
 private:
 
-  uint8_t beaconUUID[16] = { 
-	'E', 'P', 'S', 'G', '-', 'G', 'T', 'I', 
-	'-', 'P', 'R', 'O', 'Y', '-', '3', 'A'
-	};
+   uint8_t beaconUUID[16] = {
+  'E', 'P', 'S', 'G',
+  '-', 'G', 'T', 'I',
+  '-', 'P', 'R', 'O',
+  'Y', '-', '3', 'A'
+};
+
 
   // ............................................................
   // ............................................................
 public:
   EmisoraBLE laEmisora {
-	"GTI-3A", //  nombre emisora
+	"GTI-Mery", //  nombre emisora
 	  0x004c, // fabricanteID (Apple)
 	  4 // txPower
 	  };
@@ -71,7 +74,7 @@ public:
 											(*this).RSSI // rssi
 									);
 
-	/*
+	
 	Globales::elPuerto.escribir( "   publicarCO2(): valor=" );
 	Globales::elPuerto.escribir( valorCO2 );
 	Globales::elPuerto.escribir( "   contador=" );
@@ -79,7 +82,7 @@ public:
 	Globales::elPuerto.escribir( "   todo="  );
 	Globales::elPuerto.escribir( major );
 	Globales::elPuerto.escribir( "\n" );
-	*/
+	
 
 	//
 	// 2. esperamos el tiempo que nos digan
@@ -103,6 +106,16 @@ public:
 											valorTemperatura, // minor
 											(*this).RSSI // rssi
 									);
+
+   Globales::elPuerto.escribir("   publicarTemperatura(): valor=");
+  Globales::elPuerto.escribir(valorTemperatura);
+  Globales::elPuerto.escribir("   contador=");
+  Globales::elPuerto.escribir(contador);
+  Globales::elPuerto.escribir("   todo=");
+  Globales::elPuerto.escribir(major);
+  Globales::elPuerto.escribir("\n");
+
+  
 	esperar( tiempoEspera );
 
 	(*this).laEmisora.detenerAnuncio();

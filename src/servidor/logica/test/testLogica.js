@@ -1,49 +1,48 @@
+// -----------------------------------------------------------------------------
+// Fichero: testLogica.js
+// Autor: Meryame Ait Boumlik
+// Descripción: Pruebas automáticas para comprobar que guardarMedicion() y
+//              getMedicion() funcionan correctamente.
+// -----------------------------------------------------------------------------
+
 const Logica = require("../logica/Logica.js");
 const assert = require("assert");
 
-describe("Pruebas de Logica: Mediciones", function () {
+describe("Pruebas automáticas de Logica: Mediciones", function () {
     let laLogica = null;
 
-    // ------------------------------------------------------
-    // Conectar a la base de datos
-    // ------------------------------------------------------
     it("conectar a la base de datos", function (hecho) {
-        laLogica = new Logica("../bd/datos.bd", function (err) {
-            if (err) {
-                throw new Error("No se pudo conectar con datos.bd");
-            }
-            hecho(); // avisamos que ya está
+        laLogica = new Logica("../bd/datos.db", function (err) {
+            if (err) throw new Error("No se pudo conectar con datos.db");
+            hecho();
         });
     });
 
-    // ------------------------------------------------------
-    // Borrar todas las filas antes de empezar
-    // ------------------------------------------------------
     it("borrar todas las filas de Mediciones", async function () {
         await laLogica.borrarFilasDe("Mediciones");
     });
 
     // ------------------------------------------------------
-    // Guardar una medición y recuperarla
+    // Descripción: Guarda una medición fija (CO2, 333) y comprueba que se recupera igual.
     // ------------------------------------------------------
-    it("puedo guardar y recuperar la última medición", async function () {
-        const instante = new Date().toISOString();
+    it("guardar y recuperar medición CO2 = 333", async function () {
+        const tipoEsperado = "CO2";
+        const valorEsperado = 333;
+        const instanteEsperado = new Date().toISOString();
 
-        // Guardamos una medición
-        await laLogica.guardarMedicion("CO2", 1234, instante);
+        // Guardar medición
+        await laLogica.guardarMedicion(tipoEsperado, valorEsperado, instanteEsperado);
 
-        // Recuperamos la última
+        // Obtener la última medición
         const ultima = await laLogica.getMedicion();
 
-        assert(ultima, "¿No devolvió nada?");
-        assert.equal(ultima.tipo, "CO2", "¿El tipo no es CO2?");
-        assert.equal(ultima.valor, 1234, "¿El valor no es 1234?");
-        assert.equal(ultima.instante, instante, "¿El instante no coincide?");
+        // Verificaciones automáticas
+        assert(ultima, "No se devolvió ninguna medición");
+        assert.strictEqual(ultima.tipo, tipoEsperado, "Tipo incorrecto");
+        assert.strictEqual(ultima.valor, valorEsperado, "Valor incorrecto");
+        assert.strictEqual(ultima.instante, instanteEsperado, "Instante incorrecto");
     });
 
-    // ------------------------------------------------------
-    // Cerrar conexión
-    // ------------------------------------------------------
     it("cerrar conexión a la base de datos", async function () {
         try {
             await laLogica.cerrar();
