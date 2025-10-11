@@ -1,6 +1,7 @@
 package com.example.mery.beaconapp;
 // ------------------------------------------------------------------
 // Medicion.java
+// Autor: Meryame Ait Boumlik
 // Descripción: Representa una medición con tipo, valor e instante.
 // ------------------------------------------------------------------
 public class Medicion {

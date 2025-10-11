@@ -158,13 +158,11 @@ public class MainActivity extends AppCompatActivity {
         else tipo = "DESCONOCIDO";
 
         Medicion m = new Medicion( tipo, valor, instante);
-        LogicaFake logica = new LogicaFake();
-        logica.guardarMedicion(m);
 
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastSentTime > 10000) { // send only every 5 seconds
             lastSentTime = currentTime;
-            ClienteRest.enviarMedicion(m);
+            LogicaFake.guardarMedicion(m);
             Log.d(ETIQUETA_LOG, " Medición enviada: " + m);
         } else {
             Log.d(ETIQUETA_LOG, " Esperando antes de enviar otra medición");
