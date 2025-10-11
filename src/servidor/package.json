@@ -1,17 +1,26 @@
 {
-  "//": "npm run test",
   "name": "servidor",
-  "description": "Servidor Sprint0",
+  "version": "1.0.0",
+  "description": "Servidor completo con lógica de negocio, API REST y tests",
+  "main": "servidorREST/mainServidorREST.js",
   "license": "LGPL-3.0",
-  "version": "0.0.1",
-  "repository": "no hay",
-  "scripts": {
-    "test": "npx mocha"
+   "scripts": {
+    "start": "node servidorREST/mainServidorREST.js",
+    "test": "npx mocha \"logica/test/**/*.js\" \"servidorREST/test/**/*.js\"",
+    "test-logica": "npx mocha \"logica/test/**/*.js\"",
+    "test-api": "npx mocha \"servidorREST/test/testAPI.js\"",
+    "test-ui": "npx mocha \"servidorREST/test/testUI.js\""
   },
   "dependencies": {
-    "sqlite3": "*"
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7",
+    "cors": "^2.8.5",
+    "body-parser": "^2.2.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "^10.7.0",
+    "chai": "^4.3.10",
+    "supertest": "^6.3.3",
+    "jsdom": "^24.0.0"
   }
 }

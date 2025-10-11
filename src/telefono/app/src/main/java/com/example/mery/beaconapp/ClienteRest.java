@@ -15,7 +15,7 @@ import java.net.URL;
 public class ClienteRest {
 
     private static final String ETIQUETA_LOG = ">>>>";
-    private static final String DIRECCION_API = "http://192.168.84.130:8080/medicion"; // IP del PC ( 10.0.2.2 en emulador)
+    private static final String DIRECCION_API = "http://192.168.62.120:8080/medicion"; // IP del PC ( 10.0.2.2 en emulador)
 
 // --------------------------------------------------------------
     // enviarMedicion()

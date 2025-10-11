@@ -107,14 +107,14 @@ public:
 											(*this).RSSI // rssi
 									);
 
-   Globales::elPuerto.escribir("   publicarTemperatura(): valor=");
+ /*  Globales::elPuerto.escribir("   publicarTemperatura(): valor=");
   Globales::elPuerto.escribir(valorTemperatura);
   Globales::elPuerto.escribir("   contador=");
   Globales::elPuerto.escribir(contador);
   Globales::elPuerto.escribir("   todo=");
   Globales::elPuerto.escribir(major);
   Globales::elPuerto.escribir("\n");
-
+*/
   
 	esperar( tiempoEspera );
 

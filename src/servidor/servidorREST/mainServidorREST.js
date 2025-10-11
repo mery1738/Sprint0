@@ -8,8 +8,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const Logica = require("../logica/Logica.js");
-
-// Cargar lógica desde la BD
+// -----------------------------------------------------------------------------
+// cargarLogica()
+// Diseño: texto:ficheroBD -> cargarLogica() -> objeto Logica
+// Descripción: Crea un objeto Logica conectado a la base de datos indicada.
+// -----------------------------------------------------------------------------
 function cargarLogica(ficheroBD) {
     return new Promise((resolver, rechazar) => {
         const laLogica = new Logica(ficheroBD, (err) => {
@@ -21,10 +24,20 @@ function cargarLogica(ficheroBD) {
         });
     });
 }
-
-// Main del servidor
+// -----------------------------------------------------------------------------
+// main()
+//   Diseño: -> main() -> vacío
+//  Descripción: 
+//  - Espera a que se cargue la lógica.
+//  - Crea el servidor Express.
+//  - Carga las reglas REST (ReglasREST.js).
+//  - Inicia el servidor en el puerto 8080.
+// -----------------------------------------------------------------------------
 async function main() {
-    const laLogica = await cargarLogica("../bd/datos.db");
+    const path = require("path");
+    const laLogica = await cargarLogica(path.join(__dirname, "../bd/datos.db"));
+
+
 
     const servidorExpress = express();
 

@@ -8,7 +8,9 @@ module.exports.cargar = function (servidorExpress, laLogica) {
 
     
     // -----------------------------------------------------------
-    // GET /prueba
+    //GET /prueba
+    // Diseño: -> /prueba -> texto
+    // Descripción: Devuelve una respuesta simple para comprobar el funcionamiento del servidor.
     // -----------------------------------------------------------
     servidorExpress.get("/prueba", (req, res) => {
         console.log(" * GET /prueba ");
@@ -17,7 +19,8 @@ module.exports.cargar = function (servidorExpress, laLogica) {
 
     // -----------------------------------------------------------
     // POST /medicion
-    // Cuerpo esperado : { "tipo": "CO2", "valor": 333, "instante": "2025-09-25T10:30:00" }
+    // Diseño: objeto:{tipo, valor, instante} -> /medicion -> texto
+    // Descripción: Guarda una medición en la base de datos usando laLogica.guardarMedicion().
     // -----------------------------------------------------------
     servidorExpress.post("/medicion", async (req, res) => {
     console.log(" * POST /medicion ");
@@ -42,7 +45,8 @@ module.exports.cargar = function (servidorExpress, laLogica) {
 
     // -----------------------------------------------------------
     // GET /ultimaMedicion
-    // Devuelve la última medición registrada
+    // Diseño: -> /ultimaMedicion -> objeto:{id, tipo, valor, instante}
+    // Descripción: Obtiene la última medición registrada desde la base de datos.
     // -----------------------------------------------------------
     servidorExpress.get("/ultimaMedicion", async (req, res) => {
         console.log(" * GET /ultimaMedicion ");

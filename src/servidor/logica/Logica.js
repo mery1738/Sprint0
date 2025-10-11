@@ -11,7 +11,7 @@ module.exports = class Logica {
     // --------------------------------------------------------------
     // constructor()
     // Descripción: Abre la conexión con la base de datos SQLite.
-    // Diseño: String -> constructor() -> Objeto Logica
+    // Diseño: String -> constructor() -> 
     // Parámetros: nombreBD (string), cb (función callback)
     // --------------------------------------------------------------
     constructor(nombreBD, cb) {
@@ -29,7 +29,7 @@ module.exports = class Logica {
     // -------------------------------------------------------------------
     // guardarMedicion()
     // Descripción: Guarda una medición en la tabla Mediciones.
-    // Diseño: string, real, string -> guardarMedicion() -> Promise<int>
+    // Diseño: string, real, string -> guardarMedicion() -> id: entero
     // Parámetros: tipo, valor, instante
     // -------------------------------------------------------------------
      guardarMedicion(tipo, valor, instante) {
@@ -52,7 +52,7 @@ module.exports = class Logica {
     // -------------------------------------------------------------------
     // getMedicion()
     // Descripción: Obtiene la última medición registrada en la base de datos.
-    // Diseño: () -> getMedicion() -> Promise<objeto>
+    // Diseño: () -> getMedicion() -> { id: entero, tipo: Texto, valor: Real, instante: Texto}
     // Parámetros: ninguno
     // -------------------------------------------------------------------
    getMedicion() {

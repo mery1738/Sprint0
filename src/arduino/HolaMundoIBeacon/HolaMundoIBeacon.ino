@@ -121,12 +121,15 @@ void loop () {
 							);
   
   // medir y publicar Temperatura
+ /*
   int valorTemperatura = elMedidor.medirTemperatura();
   
   elPublicador.publicarTemperatura( valorTemperatura, 
 									cont,
 									1000 // intervalo de emisión
 									);
+
+  */
 
   // 
   // prueba para emitir un iBeacon y poner
